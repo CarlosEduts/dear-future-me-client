@@ -3,40 +3,46 @@ import Particles from "./ui/Particles";
 import Footer from "./ui/Footer";
 
 const PARTICLE_CONFIG = {
-  particleColors: ["#fafafa", "#f0f0f0", "#e0e0e0"],
-  particleCount: 500,
-  speed: 0.05,
-  particleBaseSize: 40,
+  particleColors: ["#ffffff", "#F3E5AB", "#D4AF37"],
+  particleCount: 400,
+  speed: 0.03,
+  particleBaseSize: 20,
   moveParticlesOnHover: true,
 };
 
 const HeroSection = () => (
-  <header className="flex flex-col gap-8 items-center max-w-2xl animate-fade-in">
-    <div className="space-y-4">
-      <h1 className="text-5xl md:text-6xl font-serif tracking-tight leading-tight text-center">
-        O que você diria para a sua{" "}
-        <span className="text-primary-light">versão do futuro?</span>
+  <header className="flex flex-col gap-10 items-center max-w-4xl animate-in fade-in zoom-in duration-1000">
+    <div className="space-y-6 text-center">
+      <h1 className="text-6xl md:text-7xl font-serif tracking-tighter leading-[0.9] text-white">
+        O que você diria para a sua <br />
+        <span className="italic text-primary drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+          versão do futuro?
+        </span>
       </h1>
-      <p className="text-lg md:text-xl font-light opacity-90 max-w-md mx-auto leading-relaxed text-center">
-        Crie cápsulas do tempo digitais e preserve seus pensamentos. Nós as
-        entregamos no momento certo.
+
+      <p className="text-lg md:text-xl font-sans font-light opacity-70 max-w-lg mx-auto leading-relaxed">
+        Crie cápsulas do tempo digitais e preserve seus pensamentos, metas e
+        sentimentos. Nós as entregamos quando o momento chegar.
       </p>
     </div>
 
     <div className="flex flex-col items-center gap-4 mt-4">
+      {/* Botão Principal */}
       <Link
         href="/capsule"
-        className="transition-transform hover:scale-105 active:scale-95 glass-card px-9 py-2.5 rounded-full text-white"
+        className="group relative transition-all hover:scale-105 active:scale-95 overflow-hidden px-12 py-4 rounded-full bg-[#D4AF37] text-[#2D2D2D] shadow-[0_0_30px_rgba(212,175,55,0.2)]"
       >
-        <span className="font-semibold text-lg uppercase tracking-wider">
-          Criar Cápsula
+        <span className="relative z-10 font-serif text-xl font-bold uppercase tracking-wider">
+          Plantar uma Semente
         </span>
+        <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
       </Link>
+
       <Link
         href="/example"
-        className="text-sm font-medium hover:underline underline-offset-4 opacity-70 transition-opacity hover:opacity-100"
+        className="group flex items-center gap-2 text-xs font-sans uppercase tracking-[0.2em] opacity-50 hover:opacity-100 transition-all"
       >
-        Veja um Exemplo
+        Veja como funciona
       </Link>
     </div>
   </header>
@@ -44,24 +50,38 @@ const HeroSection = () => (
 
 export default function HomePage() {
   return (
-    <main className="relative w-full h-dvh overflow-hidden text-white cosmic-gradient">
-      {/* Camada de Background */}
+    <main className="relative w-full min-h-dvh overflow-hidden text-white bg-[#0B0E14]">
+      {/* Background */}
       <div
-        className="absolute inset-0 z-0 pointer-events-none bg-cosmic"
+        className="absolute inset-0 z-0 pointer-events-none"
         aria-hidden="true"
       >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#1C1B2E_0%,#0B0E14_100%)]" />
         <Particles {...PARTICLE_CONFIG} />
+        <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
       </div>
 
-      {/* Camada de Conteúdo */}
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-between py-8 pb-4 px-6">
-        <span className="text-xs font-bold uppercase tracking-[0.2em]">
-          Dear Future Me
-        </span>
+      {/* Conteúdo */}
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-between gap-16 py-12 pb-8 px-6">
+        <div className="flex flex-col items-center gap-1">
+          <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary/60">
+            Est. 2026
+          </span>
+          <span className="font-serif italic text-lg tracking-wide">
+            Dear Future Me
+          </span>
+        </div>
 
         <HeroSection />
 
-        <Footer />
+        {/* Footer com contador de cápsulas */}
+        <div className="flex flex-col items-center">
+          <p className="text-[9px] uppercase tracking-[0.2em] opacity-40">
+            Mais de <span className="text-white opacity-100">54.000</span>{" "}
+            mensagens viajando pelo tempo
+          </p>
+          <Footer />
+        </div>
       </div>
     </main>
   );
