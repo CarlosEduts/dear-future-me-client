@@ -42,7 +42,7 @@ export default function Capsule() {
           />
           <button
             type="submit"
-            className="px-12 py-2 h-12 bg-primary rounded-full hover:bg-primary-light transition-colors gold-gradient font-serif"
+            className="px-12 py-2 h-12 bg-primary rounded-full  gold-gradient font-serif transition-transform hover:scale-105 active:scale-95"
           >
             Selar Cápsula
           </button>
