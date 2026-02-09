@@ -214,6 +214,38 @@
     );
     color: #2d2d2d;
   }
+
+  .glass-gold-card {
+    /* --- O EFEITO DE VIDRO --- */
+
+    /* 1. O Desfoque do fundo (Essencial) */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px); /* Para suporte ao Safari */
+
+    /* 2. A cor de fundo transparente */
+    /* Usei um gradiente linear para dar mais profundidade:
+       mais claro/dourado no topo, mais escuro/âmbar na base */
+    background: linear-gradient(
+      180deg,
+      rgba(255, 223, 180, 0.15) 0%,
+      /* Topo mais claro */ rgba(140, 90, 50, 0.4) 100% /* Base mais escura */
+    );
+
+    /* 3. A Borda e o Brilho (A parte mais complexa) */
+    /* Uma borda física fina e semitransparente */
+    border: 1px solid rgba(255, 235, 200, 0.3);
+
+    /* Múltiplas sombras para criar o brilho dourado nas bordas */
+    box-shadow:
+        /* Sombra interna (inset) para um brilho suave dentro do vidro */
+      inset 0 0 20px rgba(255, 200, 120, 0.2),
+      /* Um pequeno brilho branco nítido na borda superior interna */ inset 0
+        1px 2px rgba(255, 255, 255, 0.3),
+      /* Sombra externa suave para profundidade */ 0 10px 30px
+        rgba(0, 0, 0, 0.2),
+      /* Sombra externa dourada para o halo de luz ao redor */ 0 0 15px
+        rgba(180, 130, 70, 0.4);
+  }
 }
 
 /* --- Estilos Base --- */
