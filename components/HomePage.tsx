@@ -48,7 +48,7 @@ const HeroSection = () => (
   </header>
 );
 
-export default function HomePage() {
+export default function HomePage({ capsuleCount }: { capsuleCount: number }) {
   return (
     <main className="relative w-full min-h-dvh overflow-hidden text-white bg-[#0B0E14]">
       {/* Background */}
@@ -77,7 +77,8 @@ export default function HomePage() {
         {/* Footer com contador de cápsulas */}
         <div className="flex flex-col items-center">
           <p className="text-[9px] uppercase tracking-[0.2em] opacity-40">
-            Mais de <span className="text-white opacity-100">54.000</span>{" "}
+            Mais de{" "}
+            <span className="text-white opacity-100">{capsuleCount}</span>{" "}
             mensagens viajando pelo tempo
           </p>
           <Footer />
