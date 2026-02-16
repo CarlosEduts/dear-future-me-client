@@ -23,3 +23,23 @@ export async function getCapsuleById(id: string): Promise<CapsuleData> {
     throw error; // Repassa o erro para o error.tsx do Next.js lidar
   }
 }
+
+export async function getCapsuleCount(): Promise<number> {
+  const baseUrl = getEnvVar("API_URL");
+
+  try {
+    const response = await fetch(`${baseUrl}/count`, {
+      next: { revalidate: 3600 },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro na API: ${response.status} ${response.statusText}`);
+    }
+
+    const data: number = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Falha ao buscar contagem de cápsulas:", error);
+    throw error; // Repassa o erro para o error.tsx do Next.js lidar
+  }
+}
