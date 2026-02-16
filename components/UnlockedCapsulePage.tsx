@@ -1,6 +1,11 @@
+import { CapsuleData, FormattedDate } from "@/types/capsule";
+import { formatCapsuleDate } from "@/lib/utils";
 import Footer from "./ui/Footer";
 
-export default function UnlockedCapsulePage() {
+export default function UnlockedCapsulePage(props: CapsuleData) {
+  const createdAt: FormattedDate = formatCapsuleDate(props.createdAt);
+  const unlockDate: FormattedDate = formatCapsuleDate(props.unlockDate);
+
   return (
     <div className="w-full min-h-dvh flex flex-col items-center justify-between py-12 px-6 bg-[#0B0E14] bg-[radial-gradient(circle_at_top,#2E2C45_0%,#0B0E14_100%)] text-white relative overflow-hidden">
       {/* Estrelas ao fundo */}
@@ -32,7 +37,9 @@ export default function UnlockedCapsulePage() {
               <span className="text-[10px] uppercase tracking-widest text-black/40 font-sans font-bold">
                 Identificador da Cápsula
               </span>
-              <code className="text-xs bg-black/5 p-1 rounded w-fit text-black/60">{`12345678-1234-1234`}</code>
+              <code className="text-xs bg-black/5 p-1 rounded w-fit text-black/60">
+                {props.id}
+              </code>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -41,9 +48,9 @@ export default function UnlockedCapsulePage() {
                   Escrito em
                 </span>
                 <p className="font-serif font-bold text-sm">
-                  12 de Fev, 2025{" "}
+                  {createdAt.day} de {createdAt.month}, {createdAt.year}{" "}
                   <span className="font-sans font-normal opacity-60">
-                    14:30
+                    {createdAt.hour}:{createdAt.minute}
                   </span>
                 </p>
               </div>
@@ -52,9 +59,9 @@ export default function UnlockedCapsulePage() {
                   Liberado em
                 </span>
                 <p className="font-serif font-bold text-sm">
-                  15 de Set, 2038{" "}
+                  {unlockDate.day} de {unlockDate.month}, {unlockDate.year}{" "}
                   <span className="font-sans font-normal opacity-60">
-                    18:00
+                    {unlockDate.hour}:{unlockDate.minute}
                   </span>
                 </p>
               </div>
@@ -63,17 +70,7 @@ export default function UnlockedCapsulePage() {
 
           {/* Conteúdo da Mensagem */}
           <article className="font-serif text-lg md:text-xl leading-relaxed first-letter:text-4xl first-letter:font-bold first-letter:mr-1 text-[#37261C]">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-            ex inventore vitae. Reiciendis odio itaque enim rerum quibusdam
-            temporibus doloremque possimus voluptatibus. Nulla, illum possimus.
-            Animi minima illo quo? Ab! Aperiam voluptatem officia autem, rem
-            sequi eum?
-            <br />
-            <br />
-            Consequuntur recusandae architecto aliquam nulla natus sunt quae
-            dolorum vel molestias. Quia temporibus odio molestiae, quae
-            explicabo provident veniam asperiores necessitatibus impedit
-            sapiente!
+            {props.message}
           </article>
         </div>
       </main>
