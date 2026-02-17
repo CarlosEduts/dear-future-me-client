@@ -1,3 +1,7 @@
+export type CapsuleStatus =
+  | { status: "unlocked"; data: CapsuleData }
+  | { status: "locked"; unlockDate: string };
+
 export interface CapsuleData {
   id: string;
   message: string;

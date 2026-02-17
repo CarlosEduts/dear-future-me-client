@@ -1,27 +1,30 @@
 import { getEnvVar } from "@/lib/utils";
-import { CapsuleData } from "@/types/capsule";
-import { notFound, forbidden } from "next/navigation";
+import { CapsuleStatus, CapsuleData } from "@/types/capsule";
+import { notFound } from "next/navigation";
 
-export async function getCapsuleById(id: string): Promise<CapsuleData> {
+export async function getCapsuleById(id: string): Promise<CapsuleStatus> {
   const baseUrl = getEnvVar("API_URL");
+  const response = await fetch(`${baseUrl}/${id}`, {
+    next: { revalidate: 3600 },
+  });
 
-  try {
-    const response = await fetch(`${baseUrl}/${id}`, {
-      next: { revalidate: 3600 },
-    });
+  if (response.status === 404) notFound();
 
-    if (response.status === 404) notFound();
-    if (response.status === 403) forbidden();
+  const responseData = await response.json();
 
-    if (!response.ok) {
-      throw new Error(`Erro na API: ${response.status} ${response.statusText}`);
-    }
-
-    return (await response.json()) as CapsuleData;
-  } catch (error) {
-    console.error(`Falha ao buscar cápsula ${id}:`, error);
-    throw error; // Repassa o erro para o error.tsx do Next.js lidar
+  if (response.status === 403) {
+    return {
+      status: "locked",
+      // O horário do desbloqueio da cápsula vem na mensagem entre colchetes
+      unlockDate: responseData.message.match(/\[(.*?)\]/)?.[1] || "",
+    };
   }
+
+  if (!response.ok) {
+    throw new Error(`API Error: ${response.status}`);
+  }
+
+  return { status: "unlocked", data: responseData as CapsuleData };
 }
 
 export async function getCapsuleCount(): Promise<number> {

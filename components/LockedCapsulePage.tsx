@@ -1,7 +1,14 @@
 import { Clock } from "lucide-react";
 import Footer from "./ui/Footer";
+import { formatCapsuleDate } from "@/lib/utils";
 
-export default function LockedCapsulePage() {
+export default function LockedCapsulePage({
+  unlockDate,
+}: {
+  unlockDate: string;
+}) {
+  const unlockDateFormatted = formatCapsuleDate(unlockDate);
+
   return (
     <div className="w-full min-h-dvh flex flex-col gap-12 items-center justify-between py-12 px-6 bg-[#0B0E14] bg-[radial-gradient(circle_at_center,#1C1B2E_0%,#0B0E14_100%)] text-white relative overflow-hidden">
       {/* Estrelas ao fundo */}
@@ -34,16 +41,21 @@ export default function LockedCapsulePage() {
           </p>
 
           {/* Countdown Grid  */}
-          <div className="w-full grid grid-cols-4 gap-2 mb-8">
+          <div className="flex justify-between text-[10px] font-sans uppercase tracking-widest opacity-40 mb-5">
+            <span>Floresce em:</span>
+          </div>
+          <div className="w-full flex justify-between gap-5">
             {[
-              { label: "Dias", value: "422" },
-              { label: "Hrs", value: "02" },
-              { label: "Min", value: "15" },
-              { label: "Seg", value: "30" },
+              {
+                label: "Dia",
+                value: unlockDateFormatted.day.toString().padStart(2, "0"),
+              },
+              { label: "Mês", value: unlockDateFormatted.month },
+              { label: "Anos", value: unlockDateFormatted.year },
             ].map((item) => (
               <div
                 key={item.label}
-                className="bg-white/5 rounded-lg py-3 border border-white/5"
+                className="bg-white/5 rounded-lg py-3 border border-white/5 w-full"
               >
                 <span className="block text-xl font-bold font-sans">
                   {item.value}
@@ -55,18 +67,26 @@ export default function LockedCapsulePage() {
             ))}
           </div>
 
-          {/* Barra de Progresso */}
-          <div className="w-full space-y-3">
-            <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+          <div className="flex justify-between text-[10px] font-sans uppercase tracking-widest opacity-40 my-5">
+            <span>ás:</span>
+          </div>
+          <div className="w-full mb-8  flex justify-between gap-5">
+            {[
+              { label: "Horas", value: unlockDateFormatted.hour },
+              { label: "Minutos", value: unlockDateFormatted.minute },
+            ].map((item) => (
               <div
-                className="h-full bg-linear-to-r from-primary/50 via-primary to-primary/50 shadow-[0_0_15px_rgba(212,175,55,0.5)] transition-all duration-1000"
-                style={{ width: "75%" }}
-              ></div>
-            </div>
-            <div className="flex justify-between text-[10px] font-sans uppercase tracking-widest opacity-40">
-              <span>Plantada em 2025</span>
-              <span>Floresce em 2038</span>
-            </div>
+                key={item.label}
+                className="bg-white/5 rounded-lg py-3 border border-white/5 w-full"
+              >
+                <span className="block text-xl font-bold font-sans">
+                  {item.value}
+                </span>
+                <span className="text-[9px] uppercase tracking-tighter opacity-40">
+                  {item.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </main>

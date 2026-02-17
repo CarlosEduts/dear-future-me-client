@@ -1,3 +1,4 @@
+import LockedCapsulePage from "@/components/LockedCapsulePage";
 import UnlockedCapsulePage from "@/components/UnlockedCapsulePage";
 import { getCapsuleById } from "@/services/capsule.service";
 
@@ -7,14 +8,20 @@ interface PageProps {
 
 export default async function CapsulePage({ params }: PageProps) {
   const { id } = await params;
-  const capsule = await getCapsuleById(id);
+  const result = await getCapsuleById(id);
+
+  if (result.status === "locked") {
+    return <LockedCapsulePage unlockDate={result.unlockDate} />;
+  }
+
+  const { data } = result;
 
   return (
     <UnlockedCapsulePage
-      id={capsule.id}
-      message={capsule.message}
-      createdAt={capsule.createdAt}
-      unlockDate={capsule.unlockDate}
+      id={data.id}
+      message={data.message}
+      createdAt={data.createdAt}
+      unlockDate={data.unlockDate}
     />
   );
 }
