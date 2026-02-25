@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Particles from "./ui/Particles";
-import Footer from "./ui/Footer";
+import Footer from "./Footer";
 
 const PARTICLE_CONFIG = {
   particleColors: ["#ffffff", "#F3E5AB", "#D4AF37"],
@@ -36,13 +36,6 @@ const HeroSection = () => (
           Plantar uma Semente
         </span>
         <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-      </Link>
-
-      <Link
-        href="/example"
-        className="group flex items-center gap-2 text-xs font-sans uppercase tracking-[0.2em] opacity-50 hover:opacity-100 transition-all"
-      >
-        Veja como funciona
       </Link>
     </div>
   </header>

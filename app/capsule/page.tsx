@@ -1,7 +1,7 @@
 "use client";
 
 import { Calendar } from "@/components/ui/calendar";
-import Footer from "@/components/ui/Footer";
+import Footer from "@/components/Footer";
 import { ptBR } from "date-fns/locale";
 import Image from "next/image";
 import { useCreateCapsule } from "@/hooks/use-create-capsule";
@@ -41,6 +41,7 @@ export default function CreateCapsule() {
             >
               O que você quer lembrar?
             </label>
+
             <div className="relative group">
               <textarea
                 id="message"
@@ -58,6 +59,7 @@ export default function CreateCapsule() {
             <label className="font-serif italic text-lg opacity-60 ml-2">
               Quando devo entregar?
             </label>
+
             <div className="bg-white/50 backdrop-blur-sm p-4 rounded-sm border border-black/5 shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
               <Calendar
                 mode="single"
@@ -67,10 +69,12 @@ export default function CreateCapsule() {
                 disabled={(date) => date < new Date() || isPending}
                 className="font-sans"
               />
+
               <div className="mt-4 p-3 text-center">
                 <span className="text-[10px] uppercase font-bold tracking-widest opacity-60 block">
                   Entrega estimada
                 </span>
+
                 <p className="font-serif font-bold text-primary">
                   {unlockDate
                     ? unlockDate.toLocaleDateString("pt-BR", {

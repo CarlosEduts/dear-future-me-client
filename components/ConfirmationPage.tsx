@@ -3,7 +3,7 @@
 import { Share2, Undo2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import Footer from "./ui/Footer";
+import Footer from "./Footer";
 import { useShareCapsule } from "@/hooks/use-capsule-share";
 
 export default function ConfirmationPage({ id }: { id: string }) {

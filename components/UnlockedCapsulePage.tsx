@@ -1,6 +1,6 @@
 import { CapsuleData, FormattedDate } from "@/types/capsule";
 import { formatCapsuleDate } from "@/lib/utils";
-import Footer from "./ui/Footer";
+import Footer from "./Footer";
 
 export default function UnlockedCapsulePage(props: CapsuleData) {
   const createdAt: FormattedDate = formatCapsuleDate(props.createdAt);

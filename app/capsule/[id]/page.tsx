@@ -15,7 +15,6 @@ export default async function CapsulePage({ params }: PageProps) {
   }
 
   const { data } = result;
-
   return (
     <UnlockedCapsulePage
       id={data.id}

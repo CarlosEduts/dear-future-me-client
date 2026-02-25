@@ -1,13 +1,16 @@
 import Link from "next/link";
-import { Github, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const links = [
-    { label: "Sobre o projeto", href: "/about" },
     { label: "Termos & Privacidade", href: "/terms" },
-    { label: "Github", href: "https://github.com", isExternal: true },
+    {
+      label: "Github / Sobre o projeto",
+      href: "https://github.com/CarlosEduts/dear-future-me-client",
+      isExternal: true,
+    },
   ];
 
   return (
@@ -24,9 +27,6 @@ export default function Footer() {
                 rel={link.isExternal ? "noopener noreferrer" : undefined}
                 className="group flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] font-bold opacity-40 hover:opacity-100 hover:text-primary transition-all duration-300"
               >
-                {link.label === "Github" && (
-                  <Github size={12} className="opacity-70" />
-                )}
                 {link.label}
                 {link.isExternal && (
                   <ExternalLink

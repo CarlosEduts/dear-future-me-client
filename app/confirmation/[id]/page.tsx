@@ -6,6 +6,5 @@ interface PageProps {
 
 export default async function Confirmation({ params }: PageProps) {
   const { id } = await params;
-
   return <ConfirmationPage id={id} />;
 }

@@ -1,5 +1,5 @@
 import { Clock } from "lucide-react";
-import Footer from "./ui/Footer";
+import Footer from "./Footer";
 import { formatCapsuleDate } from "@/lib/utils";
 
 export default function LockedCapsulePage({
@@ -44,40 +44,18 @@ export default function LockedCapsulePage({
           <div className="flex justify-between text-[10px] font-sans uppercase tracking-widest opacity-40 mb-5">
             <span>Floresce em:</span>
           </div>
-          <div className="w-full flex justify-between gap-5">
+          <div className="w-full flex justify-center gap-2">
             {[
               {
                 label: "Dia",
                 value: unlockDateFormatted.day.toString().padStart(2, "0"),
               },
               { label: "Mês", value: unlockDateFormatted.month },
-              { label: "Anos", value: unlockDateFormatted.year },
+              { label: "Ano", value: unlockDateFormatted.year },
             ].map((item) => (
               <div
                 key={item.label}
-                className="bg-white/5 rounded-lg py-3 border border-white/5 w-full"
-              >
-                <span className="block text-xl font-bold font-sans">
-                  {item.value}
-                </span>
-                <span className="text-[9px] uppercase tracking-tighter opacity-40">
-                  {item.label}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex justify-between text-[10px] font-sans uppercase tracking-widest opacity-40 my-5">
-            <span>ás:</span>
-          </div>
-          <div className="w-full mb-8  flex justify-between gap-5">
-            {[
-              { label: "Horas", value: unlockDateFormatted.hour },
-              { label: "Minutos", value: unlockDateFormatted.minute },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="bg-white/5 rounded-lg py-3 border border-white/5 w-full"
+                className="bg-white/5 rounded-lg py-3 border border-white/5 w-26"
               >
                 <span className="block text-xl font-bold font-sans">
                   {item.value}

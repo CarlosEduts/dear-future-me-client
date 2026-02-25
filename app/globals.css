@@ -6,38 +6,28 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
-
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
-
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -50,7 +40,6 @@
   /* Fonts & Radius Mapping */
   --font-sans: var(--font-playfair-display), ui-sans-serif, system-ui;
   --font-mono: var(--font-inter), ui-monospace, monospace;
-
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -61,33 +50,22 @@
 /* --- Variáveis CSS (Design System Token Source) --- */
 :root {
   --radius: 0.75rem;
-
-  /* Base: Light Mode */
   --background: oklch(0.97 0.01 95);
   --foreground: oklch(0.28 0.02 280);
-
   --card: oklch(0.985 0.005 95);
   --card-foreground: oklch(0.28 0.02 280);
-
   --popover: oklch(0.985 0.005 95);
   --popover-foreground: oklch(0.28 0.02 280);
-
-  /* Brand: Ouro Envelhecido */
   --primary: oklch(0.76 0.14 85);
   --primary-foreground: oklch(0.2 0.05 85);
-
   --secondary: oklch(0.92 0.02 95);
   --secondary-foreground: oklch(0.28 0.02 280);
-
   --muted: oklch(0.92 0.02 95);
   --muted-foreground: oklch(0.55 0.02 280);
-
   --accent: oklch(0.94 0.03 85);
   --accent-foreground: oklch(0.28 0.02 280);
-
   --destructive: oklch(0.65 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
-
   --border: oklch(0.88 0.02 95);
   --input: oklch(0.88 0.02 95);
   --ring: oklch(0.76 0.14 85);
@@ -112,33 +90,24 @@
 
 /* --- Dark Mode Override --- */
 .dark {
-  /* Base: Deep Space Blue */
   --background: oklch(0.13 0.03 266);
   --foreground: oklch(0.95 0.01 266);
-
-  /* Glassmorphism Base */
   --card: oklch(0.18 0.05 285);
   --card-foreground: oklch(0.95 0.01 266);
-
   --popover: oklch(0.18 0.05 285);
   --popover-foreground: oklch(0.95 0.01 266);
 
   /* Brand: Ouro Brilhante */
   --primary: oklch(0.76 0.14 85);
   --primary-foreground: oklch(0.15 0.05 85);
-
   --secondary: oklch(0.25 0.06 280);
   --secondary-foreground: oklch(0.98 0.01 266);
-
   --muted: oklch(0.25 0.04 280);
   --muted-foreground: oklch(0.7 0.04 280);
-
   --accent: oklch(0.3 0.06 280);
   --accent-foreground: oklch(0.98 0.01 266);
-
   --destructive: oklch(0.6 0.2 25);
   --destructive-foreground: oklch(0.98 0 0);
-
   --border: oklch(0.98 0.01 266 / 10%);
   --input: oklch(0.98 0.01 266 / 15%);
   --ring: oklch(0.76 0.14 85);
@@ -205,46 +174,24 @@
   }
 
   .gold-gradient {
-    background: linear-gradient(
-      135deg,
-      #f3e5ab 0%,
-      /* Soft Amber (Luz) */ #d4af37 50%,
-      /* Gold (Cor base) */ #c59d24 100%
-        /* Um tom um pouco mais fechado para sombra */
-    );
+    background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #c59d24 100%);
     color: #2d2d2d;
   }
 
   .glass-gold-card {
-    /* --- O EFEITO DE VIDRO --- */
-
-    /* 1. O Desfoque do fundo (Essencial) */
     backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px); /* Para suporte ao Safari */
-
-    /* 2. A cor de fundo transparente */
-    /* Usei um gradiente linear para dar mais profundidade:
-       mais claro/dourado no topo, mais escuro/âmbar na base */
+    -webkit-backdrop-filter: blur(25px);
     background: linear-gradient(
       180deg,
       rgba(255, 223, 180, 0.15) 0%,
-      /* Topo mais claro */ rgba(140, 90, 50, 0.4) 100% /* Base mais escura */
+      rgba(140, 90, 50, 0.4) 100%
     );
-
-    /* 3. A Borda e o Brilho (A parte mais complexa) */
-    /* Uma borda física fina e semitransparente */
     border: 1px solid rgba(255, 235, 200, 0.3);
-
-    /* Múltiplas sombras para criar o brilho dourado nas bordas */
     box-shadow:
-        /* Sombra interna (inset) para um brilho suave dentro do vidro */
       inset 0 0 20px rgba(255, 200, 120, 0.2),
-      /* Um pequeno brilho branco nítido na borda superior interna */ inset 0
-        1px 2px rgba(255, 255, 255, 0.3),
-      /* Sombra externa suave para profundidade */ 0 10px 30px
-        rgba(0, 0, 0, 0.2),
-      /* Sombra externa dourada para o halo de luz ao redor */ 0 0 15px
-        rgba(180, 130, 70, 0.4);
+      inset 0 1px 2px rgba(255, 255, 255, 0.3),
+      0 10px 30px rgba(0, 0, 0, 0.2),
+      0 0 15px rgba(180, 130, 70, 0.4);
   }
 }
 
