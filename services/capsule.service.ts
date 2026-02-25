@@ -1,9 +1,9 @@
-import { getEnvVar } from "@/lib/utils";
-import { CapsuleStatus, CapsuleData } from "@/types/capsule";
+import { env } from "@/config/env";
+import { CapsuleStatus, CapsuleData, PostCapsuleData } from "@/types/capsule";
 import { notFound } from "next/navigation";
 
 export async function getCapsuleById(id: string): Promise<CapsuleStatus> {
-  const baseUrl = getEnvVar("API_URL");
+  const baseUrl = env.baseUrl;
   const response = await fetch(`${baseUrl}/${id}`, {
     next: { revalidate: 3600 },
   });
@@ -28,7 +28,7 @@ export async function getCapsuleById(id: string): Promise<CapsuleStatus> {
 }
 
 export async function getCapsuleCount(): Promise<number> {
-  const baseUrl = getEnvVar("API_URL");
+  const baseUrl = env.baseUrl;
 
   try {
     const response = await fetch(`${baseUrl}/count`, {
@@ -44,5 +44,31 @@ export async function getCapsuleCount(): Promise<number> {
   } catch (error) {
     console.error("Falha ao buscar contagem de cápsulas:", error);
     throw error; // Repassa o erro para o error.tsx do Next.js lidar
+  }
+}
+
+
+export async function createCapsule(
+  capsuleData: PostCapsuleData,
+): Promise<CapsuleData> {
+  const baseUrl = env.baseUrl;
+
+  try {
+    const response = await fetch(baseUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(capsuleData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro na API: ${response.status} ${response.statusText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Falha ao criar cápsula:", error);
+    throw error;
   }
 }

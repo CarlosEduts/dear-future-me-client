@@ -3,11 +3,19 @@
 import { Calendar } from "@/components/ui/calendar";
 import Footer from "@/components/ui/Footer";
 import { ptBR } from "date-fns/locale";
-import { useState } from "react";
 import Image from "next/image";
+import { useCreateCapsule } from "@/hooks/use-create-capsule";
 
-export default function Capsule() {
-  const [date, setDate] = useState<Date | undefined>(new Date());
+export default function CreateCapsule() {
+  const {
+    message,
+    setMessage,
+    unlockDate,
+    setUnlockDate,
+    isPending,
+    handleSubmit,
+  } = useCreateCapsule();
+
   return (
     <div className="w-full min-h-dvh flex flex-col items-center justify-between py-10 px-6 bg-[#F9F7F2] bg-[radial-gradient(circle_at_center,#F9F7F2_0%,#F0EFE9_100%)] text-[#2D2D2D] relative overflow-hidden">
       {/* Branding Minimalista */}
@@ -21,7 +29,7 @@ export default function Capsule() {
       </header>
 
       <form
-        action=""
+        onSubmit={handleSubmit}
         className="z-10 w-full max-w-5xl flex flex-col items-center gap-10"
       >
         <div className="w-full flex flex-col lg:flex-row gap-8 items-start justify-center">
@@ -35,11 +43,13 @@ export default function Capsule() {
             </label>
             <div className="relative group">
               <textarea
-                name="message"
                 id="message"
-                className="w-full min-h-112.5 p-8 md:p-12 bg-white/50 backdrop-blur-sm border border-black/5 rounded-sm shadow-[0_10px_30px_rgba(0,0,0,0.05)] font-serif text-xl leading-relaxed placeholder:text-black/20 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all resize-none"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                disabled={isPending}
+                className="w-full min-h-112.5 p-8 md:p-12 bg-white/50 backdrop-blur-sm border border-black/5 rounded-sm shadow-[0_10px_30px_rgba(0,0,0,0.05)] font-serif text-xl leading-relaxed focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all resize-none disabled:opacity-50"
                 placeholder="Querido eu do futuro..."
-              ></textarea>
+              />
             </div>
           </div>
 
@@ -51,10 +61,10 @@ export default function Capsule() {
             <div className="bg-white/50 backdrop-blur-sm p-4 rounded-sm border border-black/5 shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
               <Calendar
                 mode="single"
-                selected={date}
-                onSelect={setDate}
+                selected={unlockDate}
+                onSelect={setUnlockDate}
                 locale={ptBR}
-                disabled={{ before: new Date() }}
+                disabled={(date) => date < new Date() || isPending}
                 className="font-sans"
               />
               <div className="mt-4 p-3 text-center">
@@ -62,8 +72,8 @@ export default function Capsule() {
                   Entrega estimada
                 </span>
                 <p className="font-serif font-bold text-primary">
-                  {date
-                    ? date.toLocaleDateString("pt-BR", {
+                  {unlockDate
+                    ? unlockDate.toLocaleDateString("pt-BR", {
                         day: "numeric",
                         month: "long",
                         year: "numeric",
@@ -80,6 +90,7 @@ export default function Capsule() {
           <div className="relative group flex items-center justify-center">
             <button
               type="submit"
+              disabled={isPending}
               className="relative overflow-hidden px-16 py-4 bg-[#D4AF37] hover:bg-[#C59D24] text-[#2D2D2D] font-serif text-xl font-bold rounded-full shadow-[0_10px_20px_rgba(212,175,55,0.3)] transition-all hover:scale-105 active:scale-95 group"
             >
               <span className="relative z-10">Selar Cápsula</span>

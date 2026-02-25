@@ -9,6 +9,11 @@ export interface CapsuleData {
   unlockDate: string;
 }
 
+export interface PostCapsuleData {
+  message: string;
+  unlockDate: string;
+}
+
 export interface FormattedDate {
   year: number;
   month: string;
