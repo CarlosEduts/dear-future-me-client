@@ -1,4 +1,4 @@
-# Dear Future Me — Web Client
+# Dear Future Me (Client)
 
 > Interface do **Dear Future Me**. Este projeto foi construído para oferecer uma experiência fluida, focada na facilidade de escrita para o seu "eu do futuro".
 
